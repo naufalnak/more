@@ -66,4 +66,16 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //coil
+    implementation (libs.coil)
+
+    //icon
+    implementation(libs.androidx.material.icons.extended)
+
+    //navigation
+    implementation (libs.androidx.navigation.compose)
+
+    //caroutine
+    implementation(libs.kotlinx.coroutines.android)
 }
