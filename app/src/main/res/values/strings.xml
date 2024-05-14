@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MORE</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_peta">Peta</string>
+    <string name="menu_riwayat">Riwayat</string>
+    <string name="menu_profil">Profil</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_share">Share</string>
 </resources>

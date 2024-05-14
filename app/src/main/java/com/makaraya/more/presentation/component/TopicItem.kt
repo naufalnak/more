@@ -1,6 +1,7 @@
 package com.makaraya.more.presentation.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -35,8 +36,14 @@ import com.makaraya.more.ui.theme.Montserrat
 fun TopicItem(
     topic: Topic,
     modifier: Modifier = Modifier,
+    onItemClicked: (Int) -> Unit
 ) {
-    Box (){
+    Box (
+        modifier = modifier
+            .clickable {
+                onItemClicked(topic.id)
+            }
+    ){
         Card (
             modifier = Modifier
                 .width(316.dp)
@@ -96,6 +103,7 @@ fun TopicItem(
                         .padding(4.dp)
                         .size(height = 100.dp, width = 100.dp)
                         .clip(RoundedCornerShape(9.dp))
+
                 )
             }
 
@@ -111,6 +119,7 @@ private fun TopicItemPrev() {
     MORETheme {
         TopicItem(
             topic = Topic(
+                1,
                 R.drawable.topik1,
                 "Solusi Mudah untuk Mengatasi Masalah Starter Mobil Anda",
                 "Irvansius Risky",
@@ -119,7 +128,10 @@ private fun TopicItemPrev() {
                 "Lorem ipsum dolor sit amet consectetur. Enim senectus neque faucibus cursus ut gravida. Ac pulvinar pulvinar rutrum at in lectus in. Auctor proin pulvinar massa ultricies. Condimentum molestie nec habitasse mi feugiat sed ornare et condimentum. Vitae ac potenti faucibus vulputate aenean in leo cursus. Felis accumsan posuere aliquam enim accumsan. Erat ullamcorper gravida in ac sagittis a amet.\n" +
                         "\n" +
                         "Cum egestas congue laoreet ultricies. Lobortis dictumst augue orci fermentum vestibulum. Parturient blandit id in lectus erat vulputate arcu eu. Volutpat id aliquam interdum at pretium amet ut. Lacus lacus consequat urna faucibus ut eget cras enim. Lobortis ultricies consequat aliquam pellentesque. Scelerisque aliquet lectus facilisis elit diam ac. Iaculis neque netus magna eget sit sociis ac cras suspendisse. Morbi nisl libero massa ornare massa gravida. Nulla condimentum massa netus gravida sit volutpat lectus. Enim purus massa in sed."
-            )
+            ),
+            onItemClicked = { topicId ->
+                println("Topic Id : $topicId")
+            }
         )
     }
 }

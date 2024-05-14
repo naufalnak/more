@@ -30,6 +30,7 @@ object DummyData {
 
     val topicPages = listOf(
         Topic(
+            id = 1,
             photo = R.drawable.topik1,
             judul = "Solusi Mudah untuk Mengatasi Masalah Starter Mobil Anda",
             penulis = "Irvansius Risky",
@@ -40,6 +41,7 @@ object DummyData {
                     "Cum egestas congue laoreet ultricies. Lobortis dictumst augue orci fermentum vestibulum. Parturient blandit id in lectus erat vulputate arcu eu. Volutpat id aliquam interdum at pretium amet ut. Lacus lacus consequat urna faucibus ut eget cras enim. Lobortis ultricies consequat aliquam pellentesque. Scelerisque aliquet lectus facilisis elit diam ac. Iaculis neque netus magna eget sit sociis ac cras suspendisse. Morbi nisl libero massa ornare massa gravida. Nulla condimentum massa netus gravida sit volutpat lectus. Enim purus massa in sed."
         ),
         Topic(
+            id = 2,
             photo = R.drawable.topik1,
             judul = "Tips: Cara Memperpanjang Umur Ban Mobil Anda",
             penulis = "Rizky Yuniharto",
@@ -50,6 +52,7 @@ object DummyData {
                     "Cum egestas congue laoreet ultricies. Lobortis dictumst augue orci fermentum vestibulum. Parturient blandit id in lectus erat vulputate arcu eu. Volutpat id aliquam interdum at pretium amet ut. Lacus lacus consequat urna faucibus ut eget cras enim. Lobortis ultricies consequat aliquam pellentesque. Scelerisque aliquet lectus facilisis elit diam ac. Iaculis neque netus magna eget sit sociis ac cras suspendisse. Morbi nisl libero massa ornare massa gravida. Nulla condimentum massa netus gravida sit volutpat lectus. Enim purus massa in sed."
         ),
         Topic(
+            id = 3,
             photo = R.drawable.topik1,
             judul = "7 Langkah Sederhana untuk Merawat Mobil Anda Sendiri",
             penulis = "Akbar Andriansyah",
@@ -63,6 +66,17 @@ object DummyData {
 
     val bengkelPages = listOf(
         Bengkel(
+            id = 1,
+            namaBengkel = "BENGKEL ANUGRAH",
+            deskripsi = "Apakah kendaraan Anda butuh perawatan atau perbaikan? Kami siap membantu Anda! Dengan pengalaman lebih dari 10 tahun, Bengkel Anugrah telah menjadi pilihan terpercaya untuk para pemilik kendaraan.",
+            alamat = "Jl. Gatot Subroto No. 52 Bantul, Yogyakarta",
+            noTelp = "081-456-098-321",
+            photo = R.drawable.rekomenbengkel,
+            rate = R.drawable.starrekomen,
+            nilaiRate = "4.5",
+        ),
+        Bengkel(
+            id = 2,
             namaBengkel = "BENGKEL ANUGRAH",
             deskripsi = "Apakah kendaraan Anda butuh perawatan atau perbaikan? Kami siap membantu Anda! Dengan pengalaman lebih dari 10 tahun, Bengkel Anugrah telah menjadi pilihan terpercaya untuk para pemilik kendaraan.",
             alamat = "Jl. Gatot Subroto No. 52 Bantul, Yogyakarta",

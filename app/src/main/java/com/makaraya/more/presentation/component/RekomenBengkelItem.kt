@@ -1,6 +1,7 @@
 package com.makaraya.more.presentation.component
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,8 +37,14 @@ import com.makaraya.more.ui.theme.Montserrat
 fun RekomenBengkelItem(
     bengkel: Bengkel,
     modifier: Modifier = Modifier,
+    onItemClicked: (Int) -> Unit
 ) {
-    Box() {
+    Box(
+        modifier = modifier
+            .clickable {
+                onItemClicked(bengkel.id)
+            }
+    ) {
         Card(
             modifier = Modifier
                 .width(200.dp)
@@ -106,6 +113,7 @@ private fun RekomenBengkelItemPrev() {
     MORETheme {
         RekomenBengkelItem(
             bengkel = Bengkel(
+                1,
                 "BENGKEL ANUGRAH",
                 "Apakah kendaraan Anda butuh perawatan atau perbaikan? Kami siap membantu Anda! Dengan pengalaman lebih dari 10 tahun, Bengkel Anugrah telah menjadi pilihan terpercaya untuk para pemilik kendaraan.",
                 "Jl. Gatot Subroto No. 52 Bantul, Yogyakarta",
@@ -113,7 +121,10 @@ private fun RekomenBengkelItemPrev() {
                 R.drawable.rekomenbengkel,
                 R.drawable.starrekomen,
                 "4.5"
-            )
+            ),
+            onItemClicked = { bengkelId ->
+                println("Trend Id : $bengkelId")
+            }
         )
     }
 }
