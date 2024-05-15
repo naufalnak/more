@@ -1,4 +1,4 @@
-package com.makaraya.more.presentation.component
+package com.makaraya.more.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,7 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun PetaScreen() {
+fun RiwayatScreen() {
     Box (
         modifier = Modifier.fillMaxSize()
     ){
@@ -24,7 +24,7 @@ fun PetaScreen() {
             horizontalAlignment = Alignment.CenterHorizontally,
         ){
             Text(
-                text = "Search",
+                text = "Riwayat",
                 fontSize = 30.sp,
                 color = Color.Black
             )

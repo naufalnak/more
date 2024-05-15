@@ -1,4 +1,4 @@
-package com.makaraya.more.presentation.component
+package com.makaraya.more.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -24,16 +24,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.makaraya.more.R
+import com.makaraya.more.component.RekomenBengkelItem
+import com.makaraya.more.component.TopicItem
 import com.makaraya.more.data.DummyData
 import com.makaraya.more.model.Bengkel
 import com.makaraya.more.model.Topic
 import com.makaraya.more.navigation.Screen
-import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat
 
 @Composable

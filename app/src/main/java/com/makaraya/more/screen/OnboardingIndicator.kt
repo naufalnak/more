@@ -1,4 +1,4 @@
-package com.makaraya.more.presentation.component
+package com.makaraya.more.screen
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background

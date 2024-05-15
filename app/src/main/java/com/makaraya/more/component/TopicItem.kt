@@ -1,4 +1,4 @@
-package com.makaraya.more.presentation.component
+package com.makaraya.more.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

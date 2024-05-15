@@ -1,4 +1,4 @@
-package com.makaraya.more.presentation.component
+package com.makaraya.more.screen
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -6,7 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.makaraya.more.model.OnboardingPage
-import com.makaraya.more.presentation.OnboardingScreen
+import com.makaraya.more.screen.OnboardingScreen
 
 @Composable
 fun OnboardingView(

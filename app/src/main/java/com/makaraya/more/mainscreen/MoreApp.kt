@@ -1,10 +1,8 @@
-package com.makaraya.more.presentation.component
+package com.makaraya.more.mainscreen
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ListAlt
@@ -32,12 +30,18 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.makaraya.more.screen.DetailBengkel
+import com.makaraya.more.screen.DetailTopic
+import com.makaraya.more.screen.HomeScreen
+import com.makaraya.more.screen.PetaScreen
+import com.makaraya.more.screen.ProfilScreen
+import com.makaraya.more.screen.RiwayatScreen
 import com.makaraya.more.navigation.Screen
 import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat
 
 @Composable
-fun MORE(
+fun MoreApp(
     modifier: Modifier = Modifier,
 ) {
     val navigationController = rememberNavController()
@@ -223,8 +227,8 @@ fun MORE(
 
 @Preview
 @Composable
-private fun MOREPrev() {
+private fun MoreAppPrev() {
     MORETheme{
-        MORE()
+        MoreApp()
     }
 }

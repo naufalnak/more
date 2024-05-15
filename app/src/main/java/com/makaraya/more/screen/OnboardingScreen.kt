@@ -1,4 +1,4 @@
-package com.makaraya.more.presentation
+package com.makaraya.more.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -20,7 +20,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.makaraya.more.model.OnboardingPage
-import com.makaraya.more.presentation.component.OnboardingIndicator
 import com.makaraya.more.ui.theme.Montserrat
 
 @Composable

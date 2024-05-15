@@ -1,4 +1,4 @@
-package com.makaraya.more.presentation.component
+package com.makaraya.more.screen
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
