@@ -60,7 +60,7 @@ fun LupaPassScreen() {
         Spacer(modifier = Modifier.height(15.dp))
         Text(
             text = "Jangan khawatir itu terjadi. " +
-                "Silakan masukkan email yang akan kami kirimkan OTP di email ini.",
+                    "Silakan masukkan email yang akan kami kirimkan OTP di email ini.",
             style = TextStyle(
                 color = Color.Black,
                 fontSize = 12.sp,
