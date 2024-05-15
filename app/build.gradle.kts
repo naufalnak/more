@@ -82,6 +82,12 @@ dependencies {
     // Android Maps Compose composables for the Maps SDK for Android
     implementation ("com.google.maps.android:maps-compose:4.4.1")
 
+    // Maps SDK for Android
+    implementation ("com.google.android.gms:play-services-maps:18.2.0")
+
     // To use constraintlayout in compose
     implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
+
+    // KTX for the Maps SDK for Android library
+    implementation ("com.google.maps.android:maps-ktx:5.0.0")
 }

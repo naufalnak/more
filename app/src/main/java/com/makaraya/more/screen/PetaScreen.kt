@@ -1,33 +1,39 @@
 package com.makaraya.more.screen
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.sp
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.Marker
+import com.google.maps.android.compose.MarkerState
+import com.google.maps.android.compose.rememberCameraPositionState
+import com.makaraya.more.ui.theme.MORETheme
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun PetaScreen() {
-    Box (
-        modifier = Modifier.fillMaxSize()
-    ){
-        Column (
-            modifier = Modifier
-                .fillMaxSize()
-                .align(Alignment.Center),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ){
-            Text(
-                text = "Search",
-                fontSize = 30.sp,
-                color = Color.Black
-            )
-        }
+    val jakarta = LatLng(-6.2088, 106.8456)  // Koordinat Jakarta
+    val cameraPositionState = rememberCameraPositionState {
+        position = CameraPosition.fromLatLngZoom(jakarta, 10f)
+    }
+    GoogleMap(
+        modifier = Modifier.fillMaxSize(),
+        cameraPositionState = cameraPositionState
+    ) {
+        Marker(
+            state = MarkerState(position = jakarta),
+            title = "Jakarta",
+            snippet = "Marker in Monas"
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun PetaScreenPrev() {
+    MORETheme {
+        PetaScreen()
     }
 }

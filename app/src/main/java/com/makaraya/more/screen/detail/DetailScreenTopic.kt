@@ -1,5 +1,7 @@
-package com.makaraya.more.screen
+package com.makaraya.more.screen.detail
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -54,7 +56,7 @@ fun DetailTopic(
 fun DetailTopicContent(
     newTopicList: List<Topic>,
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier.background(if (isSystemInDarkTheme())Color.DarkGray else Color.White)
 ) {
 
     Column (

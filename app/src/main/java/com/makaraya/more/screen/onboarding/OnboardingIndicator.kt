@@ -1,4 +1,4 @@
-package com.makaraya.more.screen
+package com.makaraya.more.screen.onboarding
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.background

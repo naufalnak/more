@@ -1,5 +1,7 @@
-package com.makaraya.more.screen
+package com.makaraya.more.screen.detail
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -65,7 +67,7 @@ fun DetailBengkel(
 fun DetailBengkelContent(
     newBengkelList: List<Bengkel>,
     navController: NavController,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier.background(if (isSystemInDarkTheme())Color.DarkGray else Color.White)
 ) {
     Column (
         modifier = modifier

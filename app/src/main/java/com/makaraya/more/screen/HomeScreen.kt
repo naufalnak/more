@@ -1,6 +1,8 @@
 package com.makaraya.more.screen
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -44,7 +46,8 @@ fun HomeScreen(
     bengkel: List<Bengkel> = DummyData.bengkelPages,
 ) {
     LazyColumn (
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.background(if (isSystemInDarkTheme())Color.DarkGray else Color.White)
     ){
         item {
             Column (
@@ -54,9 +57,10 @@ fun HomeScreen(
             ){
                 Row (
                     verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(top = 16.dp)
                 ){
                     Column (
-                        modifier = modifier.padding(top = 16.dp, end = 200.dp)
+                        modifier = modifier.padding(end = 200.dp),
                     ){
                         Text(
                             text = "Hi, Makaraya",
@@ -126,7 +130,7 @@ fun HomeScreen(
                     items(bengkel, key = { it.id }) {
                         RekomenBengkelItem(
                             bengkel = it,
-                            modifier = modifier.padding(bottom = 16.dp)
+                            modifier = modifier.padding(bottom = 10.dp)
                         ) { bengkelId ->
                             navController.navigate(Screen.DetailBengkel.route + "/$bengkelId")
                         }

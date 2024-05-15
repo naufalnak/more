@@ -30,8 +30,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.makaraya.more.screen.DetailBengkel
-import com.makaraya.more.screen.DetailTopic
+import com.makaraya.more.screen.detail.DetailBengkel
+import com.makaraya.more.screen.detail.DetailTopic
 import com.makaraya.more.screen.HomeScreen
 import com.makaraya.more.screen.PetaScreen
 import com.makaraya.more.screen.ProfilScreen

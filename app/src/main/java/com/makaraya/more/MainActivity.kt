@@ -7,8 +7,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.makaraya.more.data.DummyData
-import com.makaraya.more.screen.OnboardingView
-import com.makaraya.more.screen.SplashScreen
+import com.makaraya.more.screen.onboarding.OnboardingView
+import com.makaraya.more.screen.splash.SplashScreen
 import com.makaraya.more.ui.theme.MORETheme
 
 class MainActivity : ComponentActivity() {

@@ -2,8 +2,10 @@ package com.makaraya.more.screen
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -42,7 +44,9 @@ import com.makaraya.more.ui.theme.Montserrat
 @Composable
 fun ProfilScreen() {
     Box (
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier
+            .fillMaxSize()
+            .background(if (isSystemInDarkTheme())Color.DarkGray else Color.White)
     ){
         val borderWidth = 5.dp
         Column (
