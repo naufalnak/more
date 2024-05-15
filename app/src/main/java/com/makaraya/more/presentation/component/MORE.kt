@@ -1,8 +1,10 @@
 package com.makaraya.more.presentation.component
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.ListAlt
@@ -48,7 +50,8 @@ fun MORE(
         bottomBar = {
             BottomAppBar (
                 containerColor = Color.White,
-                modifier = Modifier.shadow(6.dp)
+                modifier = Modifier
+                    .shadow(8.dp)
             ){
                 // Home
                 IconButton(

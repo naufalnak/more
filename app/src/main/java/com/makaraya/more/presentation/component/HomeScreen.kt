@@ -44,20 +44,19 @@ fun HomeScreen(
     bengkel: List<Bengkel> = DummyData.bengkelPages,
 ) {
     LazyColumn (
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = modifier
+        verticalArrangement = Arrangement.spacedBy(8.dp)
     ){
         item {
             Column (
                 modifier
+                    .padding(horizontal = 16.dp)
                     .fillMaxSize()
-                    .padding(16.dp),
             ){
                 Row (
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
                 ){
                     Column (
-                        modifier = modifier.padding(end = 200.dp)
+                        modifier = modifier.padding(top = 16.dp, end = 200.dp)
                     ){
                         Text(
                             text = "Hi, Makaraya",
@@ -126,27 +125,28 @@ fun HomeScreen(
                 ){
                     items(bengkel, key = { it.id }) {
                         RekomenBengkelItem(
-                            bengkel = it
+                            bengkel = it,
+                            modifier = modifier.padding(bottom = 16.dp)
                         ) { bengkelId ->
                             navController.navigate(Screen.DetailBengkel.route + "/$bengkelId")
                         }
                     }
                 }
                 Text(
-                    text = "Bengkel Andalan",
+                    text = "Topik",
                     style = TextStyle(
                         color = Color.Black,
                         fontSize = 16.sp,
                         fontFamily = Montserrat.SemiBold
                     ),
-                    modifier = modifier.padding(top= 16.dp)
+                    modifier = Modifier.padding(top = 10.dp)
                 )
             }
         }
         items(topic, key = {it.id}){
             TopicItem(
                 topic = it,
-                modifier = Modifier.padding(horizontal = 16.dp)
+                modifier = modifier.padding(horizontal = 16.dp)
             ){
                     topicId ->
                 navController.navigate(Screen.DetailTopic.route + "/$topicId")

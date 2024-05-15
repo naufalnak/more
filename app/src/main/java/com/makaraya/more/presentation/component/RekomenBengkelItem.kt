@@ -1,5 +1,6 @@
 package com.makaraya.more.presentation.component
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -47,12 +48,10 @@ fun RekomenBengkelItem(
     ) {
         Card(
             modifier = Modifier
-                .width(200.dp)
+                .width(210.dp)
                 .height(120.dp),
             shape = RoundedCornerShape(20.dp),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 5.dp
-            ),
+            border = BorderStroke(2.dp,Color(0xFFD9D9D9)),
             colors = CardDefaults.cardColors(containerColor = Color.White)
             // Set background color here
         ) {

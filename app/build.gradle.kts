@@ -78,4 +78,10 @@ dependencies {
 
     //caroutine
     implementation(libs.kotlinx.coroutines.android)
+
+    // Android Maps Compose composables for the Maps SDK for Android
+    implementation ("com.google.maps.android:maps-compose:4.4.1")
+
+    // To use constraintlayout in compose
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0-alpha13")
 }

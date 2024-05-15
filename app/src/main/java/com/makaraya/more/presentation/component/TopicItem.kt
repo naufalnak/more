@@ -2,11 +2,9 @@ package com.makaraya.more.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -46,8 +44,8 @@ fun TopicItem(
     ){
         Card (
             modifier = Modifier
-                .width(316.dp)
-                .height(101.dp),
+                .width(373.dp)
+                .height(115.dp),
             shape = RoundedCornerShape(10.dp),
             elevation = CardDefaults.cardElevation(
                 defaultElevation = 5.dp
@@ -64,7 +62,7 @@ fun TopicItem(
                         text = topic.tanggal,
                         style = TextStyle(
                             color = Color.Black,
-                            fontSize = 8.sp,
+                            fontSize = 10.sp,
                             fontFamily = Montserrat.Regular
                         ),
                         maxLines = 1,
@@ -75,7 +73,7 @@ fun TopicItem(
                         text = topic.judul,
                         style = TextStyle(
                             color = Color.Black,
-                            fontSize = 12.sp,
+                            fontSize = 14.sp,
                             fontFamily = Montserrat.SemiBold
                         ),
                         maxLines = 2,
@@ -86,10 +84,10 @@ fun TopicItem(
                         text = topic.highlightTopic,
                         style = TextStyle(
                             color = Color.Black,
-                            fontSize = 9.sp,
+                            fontSize = 12.sp,
                             fontFamily = Montserrat.Regular
                         ),
-                        maxLines = 4,
+                        maxLines = 3,
                         overflow = TextOverflow.Ellipsis,
                         modifier = Modifier
                             .padding(start = 4.dp, bottom = 6.dp, end = 4.dp)

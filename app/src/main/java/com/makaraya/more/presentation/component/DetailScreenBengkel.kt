@@ -39,6 +39,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.makaraya.more.R
@@ -58,7 +59,7 @@ fun DetailBengkel(
     Column(
         modifier = modifier
     ) {
-        DetailBengkelContent(newBengkelList = newBengkelList)
+        DetailBengkelContent(newBengkelList = newBengkelList, navController = navController)
     }
 
 }
@@ -66,6 +67,7 @@ fun DetailBengkel(
 @Composable
 fun DetailBengkelContent(
     newBengkelList: List<Bengkel>,
+    navController: NavController,
     modifier: Modifier = Modifier
 ) {
     Column (
@@ -74,7 +76,9 @@ fun DetailBengkelContent(
             .fillMaxSize()
     ){
         IconButton(
-            onClick = { },
+            onClick = {
+                navController.navigate("home")
+            },
         ) {
             Icon(
                 imageVector = Icons.Default.ArrowBack,
@@ -224,5 +228,5 @@ fun DetailBengkelContent(
 @Preview(showBackground = true)
 @Composable
 private fun DetailBengkelContentPrev() {
-    DetailBengkelContent(newBengkelList = DummyData.bengkelPages)
+    DetailBengkelContent(newBengkelList = DummyData.bengkelPages, navController = rememberNavController())
 }
