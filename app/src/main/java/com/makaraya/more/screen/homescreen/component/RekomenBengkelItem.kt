@@ -1,4 +1,4 @@
-package com.makaraya.more.component
+package com.makaraya.more.screen.homescreen.component
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image

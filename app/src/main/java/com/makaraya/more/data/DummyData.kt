@@ -4,6 +4,7 @@ import com.makaraya.more.R
 import com.makaraya.more.model.OnboardingPage
 import com.makaraya.more.model.Topic
 import com.makaraya.more.model.Bengkel
+import com.makaraya.more.model.Riwayat
 
 object DummyData {
     val onboardingPages = listOf(
@@ -85,5 +86,25 @@ object DummyData {
             rate = R.drawable.starrekomen,
             nilaiRate = "4.5",
         )
+    )
+
+    val riwayatPages = listOf(
+        Riwayat(
+            id = 1,
+            namaBengkel = "Bengkel Anugrah",
+            jenisKendaraan = "Sepeda Motor",
+            tanggal = "04 Mei 2024",
+            KendalaKendaraan = "Mobil mengeluarkan asap putih dari kap mesin",
+            transaksi = "Rp 58.300"
+        ),
+        Riwayat(
+            id = 2,
+            namaBengkel = "Bengkel Anugrah",
+            jenisKendaraan = "Sepeda Motor",
+            tanggal = "20 April 2024",
+            KendalaKendaraan = "Mobil mengeluarkan asap putih dari kap mesin",
+            transaksi = "Rp 58.300"
+        )
+
     )
 }

@@ -1,4 +1,4 @@
-package com.makaraya.more.screen
+package com.makaraya.more.screen.peta
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable

@@ -1,4 +1,4 @@
-package com.makaraya.more.screen
+package com.makaraya.more.screen.riwayat
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

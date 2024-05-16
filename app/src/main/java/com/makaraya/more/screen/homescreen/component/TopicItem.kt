@@ -1,4 +1,4 @@
-package com.makaraya.more.component
+package com.makaraya.more.screen.homescreen.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable

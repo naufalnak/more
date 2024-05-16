@@ -32,10 +32,10 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.makaraya.more.screen.detail.DetailBengkel
 import com.makaraya.more.screen.detail.DetailTopic
-import com.makaraya.more.screen.HomeScreen
-import com.makaraya.more.screen.PetaScreen
-import com.makaraya.more.screen.ProfilScreen
-import com.makaraya.more.screen.RiwayatScreen
+import com.makaraya.more.screen.homescreen.HomeScreen
+import com.makaraya.more.screen.peta.PetaScreen
+import com.makaraya.more.screen.profil.ProfilScreen
+import com.makaraya.more.screen.riwayat.RiwayatScreen
 import com.makaraya.more.navigation.Screen
 import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat

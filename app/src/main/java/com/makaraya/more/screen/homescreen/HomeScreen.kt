@@ -1,4 +1,4 @@
-package com.makaraya.more.screen
+package com.makaraya.more.screen.homescreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,8 +30,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.makaraya.more.R
-import com.makaraya.more.component.RekomenBengkelItem
-import com.makaraya.more.component.TopicItem
+import com.makaraya.more.screen.homescreen.component.RekomenBengkelItem
+import com.makaraya.more.screen.homescreen.component.TopicItem
 import com.makaraya.more.data.DummyData
 import com.makaraya.more.model.Bengkel
 import com.makaraya.more.model.Topic
