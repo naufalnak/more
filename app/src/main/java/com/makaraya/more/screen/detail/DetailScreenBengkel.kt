@@ -167,7 +167,7 @@ fun DetailBengkelContent(
                 Button(
                     modifier = modifier
                         .height(45.dp)
-                        .width(300.dp)
+                        .width(290.dp)
                     ,
                     colors = ButtonDefaults.buttonColors(
                         containerColor = Color(0xFF1D4371),
@@ -187,20 +187,21 @@ fun DetailBengkelContent(
                 }
                 Spacer(modifier = Modifier.padding(end = 3.dp))
                 Button(
-                    modifier = modifier
-                        .height(45.dp)
-                        .width(60.dp),
+                    onClick = { /*TODO*/ },
                     shape = RoundedCornerShape(10.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF3F90F3),
+                        containerColor = Color(0xFF1D4371),
                         contentColor = Color.White
                     ),
-                    onClick = { /*TODO*/ },
+                    modifier = modifier
+                        .height(45.dp)
+                        .width(70.dp),
                 )
                 {
                     Icon(
                         imageVector = Icons.Default.Chat,
                         contentDescription = "",
+                        tint = Color.White,
                         modifier = Modifier
                             .size(24.dp)
                     )
