@@ -1,6 +1,8 @@
 package com.makaraya.more.screen.riwayat.component
 
+import android.graphics.Paint.Align
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,15 +13,18 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -51,7 +56,7 @@ fun ReservasiItem(
                 text = riwayat.namaBengkel,
                 style = TextStyle(
                     color = Color.Black,
-                    fontSize = 14.sp,
+                    fontSize = 16.sp,
                     fontFamily = Montserrat.Bold
                 ),
                 maxLines = 1,
@@ -73,7 +78,7 @@ fun ReservasiItem(
                         style = TextStyle(
                             color = Color.Black,
                             fontSize = 14.sp,
-                            fontFamily = Montserrat.Regular
+                            fontFamily = Montserrat.Medium
                         ),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -84,7 +89,7 @@ fun ReservasiItem(
                         style = TextStyle(
                             color = Color.Black,
                             fontSize = 14.sp,
-                            fontFamily = Montserrat.Regular
+                            fontFamily = Montserrat.Medium
                         ),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -97,7 +102,7 @@ fun ReservasiItem(
                 ){
                     Card (
                         modifier = Modifier
-                            .width(110.dp)
+                            .width(115.dp)
                             .height(40.dp)
                             .padding(end = 16.dp)
                         ,
@@ -110,50 +115,56 @@ fun ReservasiItem(
                     ){
                         Box (
                             contentAlignment = Alignment.Center,
-                            modifier = Modifier.padding(start = 18.dp, top = 6.dp)
+                            modifier = Modifier.padding(start = 13.dp, top = 5.dp)
                         ){
-                            Column {
+                            Column (
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ){
                                 Text(
                                     text = "Total transaksi",
                                     style = TextStyle(
                                         color = Color.Black,
-                                        fontSize = 8.sp,
+                                        fontSize = 10.sp,
                                         fontFamily = Montserrat.Medium,
                                     ),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
+                                    textAlign = TextAlign.Center
                                 )
                                 Spacer(modifier = modifier.padding(bottom = 3.dp))
                                 Text(
                                     text = riwayat.transaksi,
                                     style = TextStyle(
                                         color = Color.Black,
-                                        fontSize = 11.sp,
+                                        fontSize = 12.sp,
                                         fontFamily = Montserrat.Bold,
                                     ),
                                     maxLines = 1,
                                     overflow = TextOverflow.Ellipsis,
+                                    textAlign = TextAlign.Center
                                 )
                             }
                         }
                     }
-                    Spacer(modifier = modifier.padding(bottom = 3.dp))
-                    Button(
+                    Spacer(modifier = modifier.padding(bottom = 5.dp))
+                    TextButton(
                         modifier = modifier
-                            .width(95.dp)
-                            .height(22.dp),
+                            .width(99.dp)
+                            .height(30.dp),
+                        colors = ButtonDefaults.textButtonColors(Color(0xFF1D4371)),
                         onClick = { /*TODO*/ }
                     ) {
                         Text(
                             text = "Lihat Detail",
                             style = TextStyle(
                                 color = Color.White,
-                                fontSize = 6.sp,
-                                fontFamily = Montserrat.Medium,
+                                fontSize = 11.sp,
+                                fontFamily = Montserrat.Bold,
                             ),
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
                         )
+
                     }
                 }
             }

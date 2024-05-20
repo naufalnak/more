@@ -47,7 +47,7 @@ fun PanggilMekanikItem(
                 text = riwayat.namaBengkel,
                 style = TextStyle(
                     color = Color.Black,
-                    fontSize = 14.sp,
+                    fontSize = 16.sp,
                     fontFamily = Montserrat.Bold
                 ),
                 maxLines = 1,
@@ -68,7 +68,7 @@ fun PanggilMekanikItem(
                     style = TextStyle(
                         color = Color.Black,
                         fontSize = 14.sp,
-                        fontFamily = Montserrat.Regular
+                        fontFamily = Montserrat.Medium
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -79,7 +79,7 @@ fun PanggilMekanikItem(
                     style = TextStyle(
                         color = Color.Black,
                         fontSize = 14.sp,
-                        fontFamily = Montserrat.Regular
+                        fontFamily = Montserrat.Medium
                     ),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
@@ -101,7 +101,7 @@ fun PanggilMekanikItem(
                     style = TextStyle(
                         color = Color.Black,
                         fontSize = 14.sp,
-                        fontFamily = Montserrat.Regular
+                        fontFamily = Montserrat.Medium
                     ),
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis,

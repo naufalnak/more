@@ -44,6 +44,7 @@ import coil.request.ImageRequest
 import com.makaraya.more.R
 import com.makaraya.more.data.DummyData
 import com.makaraya.more.model.Bengkel
+import com.makaraya.more.navigation.Screen
 import com.makaraya.more.ui.theme.Montserrat
 
 @Composable
@@ -60,7 +61,6 @@ fun DetailBengkel(
     ) {
         DetailBengkelContent(newBengkelList = newBengkelList, navController = navController)
     }
-
 }
 
 @Composable
@@ -76,7 +76,7 @@ fun DetailBengkelContent(
     ){
         IconButton(
             onClick = {
-                navController.navigate("home")
+                navController.navigate(Screen.Peta.route)
             },
         ) {
             Icon(

@@ -31,13 +31,16 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.makaraya.more.R
+import com.makaraya.more.navigation.Screen
 import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat
 
 
 @Composable
 fun BottomSheetContent(
+    navController: NavController,
     modifier: Modifier = Modifier,
     onCancelClick: () -> Unit,
 ) {
@@ -109,7 +112,10 @@ fun BottomSheetContent(
             modifier = Modifier.padding(horizontal = 10.dp)
         ){
             Button(
-                onClick = { /*TODO*/ },
+                onClick = {
+                    val bengkelId = 1
+                    navController.navigate("${Screen.DetailBengkel.route}/$bengkelId")
+                },
                 shape = RoundedCornerShape(30.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF1D4371),

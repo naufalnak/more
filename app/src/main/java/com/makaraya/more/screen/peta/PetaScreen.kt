@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.content.ContextCompat
+import androidx.navigation.NavController
 import com.google.android.gms.maps.model.BitmapDescriptor
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
@@ -35,7 +36,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PetaScreen() {
+fun PetaScreen(navController: NavController,) {
     val uny = LatLng(-7.774946, 110.374188)  // Koordinat Universitas Negeri Yogyakarta
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(uny, 11f)
@@ -53,7 +54,7 @@ fun PetaScreen() {
                     .clip(RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp))
                     .background(Color.White)
             ) {
-                BottomSheetContent {
+                BottomSheetContent(navController){
                     scope.launch {
                         bottomSheetScaffoldState.bottomSheetState.collapse()
                     }
@@ -147,6 +148,6 @@ fun bitmapDescriptorFromVector(
 @Composable
 private fun PetaScreenPrev() {
     MORETheme {
-        PetaScreen()
+//        PetaScreen()
     }
 }

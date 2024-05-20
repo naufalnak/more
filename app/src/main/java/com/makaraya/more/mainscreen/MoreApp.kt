@@ -189,7 +189,7 @@ fun MoreApp(
             }
 
             composable(Screen.Peta.route){
-                PetaScreen()
+                PetaScreen(navigationController)
             }
 
             composable(Screen.Riwayat.route){
