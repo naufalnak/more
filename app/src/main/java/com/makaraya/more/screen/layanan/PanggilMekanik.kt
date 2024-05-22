@@ -279,7 +279,7 @@ fun PanggilMekanikScreen(
             )
 
             Button(
-                onClick = { navController.navigate("${Screen.Riwayat.route}") },
+                onClick = {  },
                 modifier = Modifier
                     .align(Alignment.CenterHorizontally)
                     .fillMaxWidth()
