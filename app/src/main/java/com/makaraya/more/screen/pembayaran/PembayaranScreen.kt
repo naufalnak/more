@@ -368,7 +368,7 @@ fun PembayaranScreen() {
         }
 
         Button(
-            onClick = {  },
+            onClick = { /* Handle reservation submission */ },
             modifier = Modifier
                 .align(Alignment.CenterHorizontally)
                 .fillMaxWidth()
