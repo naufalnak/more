@@ -1,5 +1,7 @@
 package com.makaraya.more.mainscreen
 
+import PanggilMekanikScreen
+import ReservationScreen
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -208,6 +210,18 @@ fun MoreApp(
                     navController = navigationController,
                     bengkelId = navBackStackEntry.arguments?.getInt("bengkelId")
                 )
+            }
+
+            composable(
+                Screen.PanggilMekanik.route
+            ){
+                PanggilMekanikScreen(navigationController)
+            }
+
+            composable(
+                Screen.Reservation.route
+            ){
+                ReservationScreen(navigationController)
             }
 
             composable(

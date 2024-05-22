@@ -174,7 +174,7 @@ fun DetailBengkelContent(
                         contentColor = Color.White
                     ),
                     shape = RoundedCornerShape(10.dp),
-                    onClick = { /*TODO*/ },
+                    onClick = { navController.navigate("${Screen.Reservation.route}") },
                 )
                 {
                     Text(

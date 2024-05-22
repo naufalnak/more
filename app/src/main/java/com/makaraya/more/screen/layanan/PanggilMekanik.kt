@@ -1,6 +1,8 @@
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -36,11 +38,17 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import com.makaraya.more.navigation.Screen
 import com.makaraya.more.screen.layanan.component.BottomSheetCompose
+import com.makaraya.more.ui.theme.Montserrat
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PanggilMekanikScreen() {
+fun PanggilMekanikScreen(
+    navController: NavController,
+    modifier: Modifier = Modifier.background(if (isSystemInDarkTheme())Color.DarkGray else Color.White)
+) {
     val showBottomSheet = remember { mutableStateOf(false) }
 
     var detailLokasi by remember { mutableStateOf("") }
@@ -48,194 +56,254 @@ fun PanggilMekanikScreen() {
     var selectedKendaraan by remember { mutableStateOf("") }
     var kendalaKendaraan by remember { mutableStateOf("") }
 
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .background(if (isSystemInDarkTheme()) Color.DarkGray else Color.White)
     ) {
-        Icon(
-            imageVector = Icons.Default.ArrowBack,
-            contentDescription = null,
-            modifier = Modifier
-                .padding(bottom = 20.dp)
-        )
-        Text(
-            text = "Reservasi Sesuai Jadwal Anda Klik Ganti",
-            style = TextStyle(
-                fontSize = 12.sp
+        Column (
+            modifier = Modifier.padding(16.dp)
+        ){
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = null,
+                modifier = Modifier
+                    .padding(bottom = 20.dp)
+                    .clickable {
+                        val bengkelId = 1
+                        navController.navigate("${Screen.DetailBengkel.route}/$bengkelId")
+                    }
             )
-        )
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Color(0xFF8AB7E1),
-            ),
-        ) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(8.dp),
+            Text(
+                text = "Reservasi Sesuai Jadwal Anda Klik Ganti",
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 12.sp,
+                    fontFamily = Montserrat.SemiBold
+                ),
+            )
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color(0xFF8AB7E1),
+                ),
             ) {
-                Icon(
-                    imageVector = Icons.Default.Call,
-                    contentDescription = "Icon",
-                    modifier = Modifier.size(24.dp)
-                )
-                Spacer(modifier = Modifier.padding(start = 8.dp))
-                Text(
-                    text = "Panggil Mekanik",
-                    modifier = Modifier.padding(end = 8.dp)
-                )
-                Spacer(modifier = Modifier.weight(1f))
-                ClickableText(
-                    text = AnnotatedString("Ganti"),
-                    onClick = {},
-                    modifier = Modifier
-                        .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
-                        .padding(horizontal = 4.dp, vertical = 2.dp)
-                )
-            }
-        }
-        Text(
-            text = "Lokasi",
-            modifier = Modifier.padding(start = 8.dp, top = 8.dp)
-        )
-        Box(
-            modifier = Modifier
-                .padding(start = 8.dp, top = 8.dp)
-                .clickable {
-                    showBottomSheet.value = true
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(8.dp),
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Call,
+                        contentDescription = "Icon",
+                        modifier = Modifier.size(24.dp)
+                    )
+                    Spacer(modifier = Modifier.padding(start = 8.dp))
+                    Text(
+                        text = "Panggil Mekanik",
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontSize = 14.sp,
+                            fontFamily = Montserrat.SemiBold
+                        ),
+                        modifier = Modifier.padding(end = 8.dp)
+                    )
+                    Spacer(modifier = Modifier.weight(1f))
+                    ClickableText(
+                        text = AnnotatedString("Ganti"),
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontSize = 14.sp,
+                            fontFamily = Montserrat.SemiBold
+                        ),
+                        onClick = {navController.navigate("${Screen.Reservation.route}")},
+                        modifier = Modifier
+                            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
+                            .padding(horizontal = 8.dp, vertical = 2.dp)
+                    )
                 }
-                .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
-                .padding(4.dp)
-        ) {
+            }
             Text(
-                text = "Isi Detail Lokasi",
-            )
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text(
-                text = if (detailLokasi.isEmpty()) "" else "$detailLokasi",
+                text = "Lokasi",
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 14.sp,
+                    fontFamily = Montserrat.SemiBold
+                ),
                 modifier = Modifier.padding(start = 8.dp, top = 8.dp)
             )
+            Box(
+                modifier = Modifier
+                    .padding(start = 8.dp, top = 8.dp)
+                    .clickable {
+                        showBottomSheet.value = true
+                    }
+                    .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
+                    .padding(4.dp)
+            ) {
+                Text(
+                    text = "Isi Detail Lokasi",
+                    style = TextStyle(
+                        color = Color.Black,
+                        fontSize = 12.sp,
+                        fontFamily = Montserrat.Medium
+                    ),
+                )
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = if (detailLokasi.isEmpty()) "" else "$detailLokasi",
+                    modifier = Modifier.padding(start = 8.dp, top = 8.dp)
+                )
+                Text(
+                    text = if (patokan.isEmpty()) "" else "($patokan)",
+                    modifier = Modifier.padding(start = 2.dp, top = 8.dp)
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            if (showBottomSheet.value) {
+                BottomSheetCompose(
+                    showBottomSheet = showBottomSheet,
+                    onDetailsSaved = { savedDetailLokasi, savedPatokan ->
+                        detailLokasi = savedDetailLokasi
+                        patokan = savedPatokan
+                    }
+                )
+            }
+
             Text(
-                text = if (patokan.isEmpty()) "" else "($patokan)",
-                modifier = Modifier.padding(start = 2.dp, top = 8.dp)
+                text = "Jenis Kendaraan",
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 14.sp,
+                    fontFamily = Montserrat.SemiBold
+                ),
+                modifier = Modifier
+                    .padding(start = 8.dp, top = 8.dp)
             )
-        }
-        Spacer(modifier = Modifier.height(10.dp))
-        if (showBottomSheet.value) {
-            BottomSheetCompose(
-                showBottomSheet = showBottomSheet,
-                onDetailsSaved = { savedDetailLokasi, savedPatokan ->
-                    detailLokasi = savedDetailLokasi
-                    patokan = savedPatokan
-                }
-            )
-        }
+            Spacer(modifier = Modifier.height(8.dp))
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp)
+                    .padding(bottom = 40.dp),
+                shape = RoundedCornerShape(16.dp),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color.White),
+                elevation = CardDefaults.cardElevation(
+                    defaultElevation = 5.dp
+                )
+            ) {
+                Column(modifier = Modifier.padding(8.dp)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = "Sepeda Motor",
+                            style = TextStyle(
+                                color = Color.Black,
+                                fontSize = 14.sp,
+                                fontFamily = Montserrat.Medium
+                            ),
+                            modifier = Modifier
+                                .padding(vertical = 8.dp)
+                                .padding(start = 8.dp)
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        RadioButton(
+                            selected = selectedKendaraan == "Sepeda Motor",
+                            onClick = { selectedKendaraan = "Sepeda Motor"},
+                            colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF1D4371))
+                        )
+                    }
 
-        Text(
-            text = "Jenis Kendaraan",
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = 8.dp, top = 12.dp)
-        )
-
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
-                .padding(bottom = 40.dp),
-            shape = RoundedCornerShape(16.dp),
-            colors = CardDefaults.cardColors(
-                containerColor = Color.White),
-            elevation = CardDefaults.cardElevation(
-                defaultElevation = 1.dp
-            )
-        ) {
-            Column(modifier = Modifier.padding(8.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "Sepeda Motor",
-                        modifier = Modifier
-                            .padding(vertical = 8.dp)
-                            .padding(start = 8.dp)
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    RadioButton(
-                        selected = selectedKendaraan == "Sepeda Motor",
-                        onClick = { selectedKendaraan = "Sepeda Motor"},
-                        colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF1D4371))
-                    )
-                }
-
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Text(
-                        text = "Mobil",
-                        modifier = Modifier
-                            .padding(vertical = 8.dp)
-                            .padding(start = 8.dp)
-                    )
-                    Spacer(modifier = Modifier.weight(1f))
-                    RadioButton(
-                        selected = selectedKendaraan == "Mobil",
-                        onClick = {selectedKendaraan = "Mobil"},
-                        colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF1D4371))
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(
+                            text = "Mobil",
+                            style = TextStyle(
+                                color = Color.Black,
+                                fontSize = 14.sp,
+                                fontFamily = Montserrat.Medium
+                            ),
+                            modifier = Modifier
+                                .padding(vertical = 8.dp)
+                                .padding(start = 8.dp)
+                        )
+                        Spacer(modifier = Modifier.weight(1f))
+                        RadioButton(
+                            selected = selectedKendaraan == "Mobil",
+                            onClick = {selectedKendaraan = "Mobil"},
+                            colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF1D4371))
+                        )
+                    }
                 }
             }
-        }
 
-        Text(
-            text = "Kendala Kendaraan",
-            modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
-        )
-
-
-        OutlinedTextField(
-            value =  kendalaKendaraan,
-            onValueChange = { kendalaKendaraan = it },
-            placeholder = {
-                Text(
-                    text = "Masukkan Kendala Kendaraan"
-                )
-            },
-            shape = RoundedCornerShape(8.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                focusedBorderColor = Color.Black,
-                unfocusedBorderColor = Color.Gray,
-                cursorColor = Color.Black
-            ),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 8.dp)
-                .height(100.dp)
-                .padding(bottom = 16.dp)
-        )
-
-        Button(
-            onClick = { /* Handle reservation submission */ },
-            modifier = Modifier
-                .align(Alignment.CenterHorizontally)
-                .fillMaxWidth()
-                .padding(8.dp),
-            shape = RoundedCornerShape(10.dp),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color(0xFF1D4371)
+            Text(
+                text = "Kendala Kendaraan",
+                style = TextStyle(
+                    color = Color.Black,
+                    fontSize = 14.sp,
+                    fontFamily = Montserrat.SemiBold
+                ),
+                modifier = Modifier.padding(horizontal = 8.dp, vertical = 8.dp)
             )
-        ) {
-            Text(text = "Konfirmasi")
+
+            OutlinedTextField(
+                value =  kendalaKendaraan,
+                onValueChange = { kendalaKendaraan = it },
+                placeholder = {
+                    Text(
+                        text = "Masukkan Kendala Kendaraan",
+                        style = TextStyle(
+                            color = Color.Black,
+                            fontSize = 14.sp,
+                            fontFamily = Montserrat.Regular
+                        ),
+                    )
+                },
+                shape = RoundedCornerShape(8.dp),
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color.Black,
+                    unfocusedBorderColor = Color.Gray,
+                    cursorColor = Color.Black
+                ),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 8.dp)
+                    .height(100.dp)
+                    .padding(bottom = 16.dp)
+            )
+
+            Button(
+                onClick = { navController.navigate("${Screen.Riwayat.route}") },
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color(0xFF1D4371)
+                )
+            ) {
+                Text(
+                    text = "Konfirmasi",
+                    style = TextStyle(
+                        color = Color.White,
+                        fontSize = 14.sp,
+                        fontFamily = Montserrat.SemiBold
+                    ),
+                )
+            }
         }
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun PreviewPanggilMekanikScreen() {
-    PanggilMekanikScreen()
+//    PanggilMekanikScreen()
 }

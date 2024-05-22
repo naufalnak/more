@@ -36,7 +36,7 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun PetaScreen(navController: NavController,) {
+fun PetaScreen(navController: NavController) {
     val uny = LatLng(-7.774946, 110.374188)  // Koordinat Universitas Negeri Yogyakarta
     val cameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(uny, 11f)
