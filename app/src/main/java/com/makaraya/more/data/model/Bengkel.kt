@@ -1,4 +1,4 @@
-package com.makaraya.more.model
+package com.makaraya.more.data.model
 
 data class Bengkel(
     val id: Int,

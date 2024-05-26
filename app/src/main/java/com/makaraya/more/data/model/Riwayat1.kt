@@ -1,6 +1,6 @@
-package com.makaraya.more.model
+package com.makaraya.more.data.model
 
-data class Riwayat (
+data class Riwayat1 (
     val id: Int,
     val namaBengkel: String,
     val jenisKendaraan: String,

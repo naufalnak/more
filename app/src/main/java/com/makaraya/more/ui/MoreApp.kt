@@ -1,7 +1,5 @@
-package com.makaraya.more.mainscreen
+package com.makaraya.more.ui
 
-import PanggilMekanikScreen
-import ReservationScreen
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -32,13 +30,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.makaraya.more.screen.detail.DetailBengkel
-import com.makaraya.more.screen.detail.DetailTopic
-import com.makaraya.more.screen.homescreen.HomeScreen
-import com.makaraya.more.screen.peta.PetaScreen
-import com.makaraya.more.screen.profil.ProfilScreen
-import com.makaraya.more.screen.riwayat.RiwayatScreen
+import com.makaraya.more.ui.screen.detail.DetailBengkel
+import com.makaraya.more.ui.screen.detail.DetailTopic
 import com.makaraya.more.navigation.Screen
+import com.makaraya.more.ui.screen.homescreen.HomeScreen
+import com.makaraya.more.ui.screen.layanan.PanggilMekanikScreen
+import com.makaraya.more.ui.screen.layanan.ReservationScreen
+import com.makaraya.more.ui.screen.pembayaran.PembayaranScreen
+import com.makaraya.more.ui.screen.peta.PetaScreen
+import com.makaraya.more.ui.screen.profil.ProfilScreen
+import com.makaraya.more.ui.screen.riwayat.RiwayatScreen
 import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat
 
@@ -222,6 +223,12 @@ fun MoreApp(
                 Screen.Reservation.route
             ){
                 ReservationScreen(navigationController)
+            }
+
+            composable(
+                Screen.Pembayaran.route
+            ){
+                PembayaranScreen(navigationController)
             }
 
             composable(
