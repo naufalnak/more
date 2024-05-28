@@ -3,10 +3,10 @@ package com.makaraya.more
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.FirebaseApp
 import com.makaraya.more.data.DummyData
 import com.makaraya.more.navigation.Screen
 import com.makaraya.more.ui.screen.login.LoginScreen
@@ -15,12 +15,15 @@ import com.makaraya.more.ui.screen.password.LupaPassScreen
 import com.makaraya.more.ui.screen.password.PassBaruScreen
 import com.makaraya.more.ui.screen.pendaftaran.RegisterScreen
 import com.makaraya.more.ui.screen.splash.SplashScreen
+import com.makaraya.more.ui.screen.verifikasi.VerifikasiScreen
 import com.makaraya.more.ui.theme.MORETheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        FirebaseApp.initializeApp(this)  // Inisialisasi Firebase
+
         setContent {
             MORETheme {
                 val navController = rememberNavController()
@@ -34,19 +37,21 @@ class MainActivity : ComponentActivity() {
                             onComplete = { navController.navigate("login") }
                         )
                     }
-                    composable(Screen.LogIn.route){
+                    composable(Screen.LogIn.route) {
                         LoginScreen(navController)
                     }
-                    composable(Screen.SignIn.route){
+                    composable(Screen.SignIn.route) {
                         RegisterScreen(navController)
                     }
-                    composable(Screen.LupaPass.route){
+                    composable(Screen.LupaPass.route) {
                         LupaPassScreen(navController)
                     }
-                    composable(Screen.NewPass.route){
+                    composable(Screen.NewPass.route) {
                         PassBaruScreen(navController)
                     }
-
+                    composable(Screen.Verif.route) {
+                        VerifikasiScreen(navController)
+                    }
                 }
             }
         }

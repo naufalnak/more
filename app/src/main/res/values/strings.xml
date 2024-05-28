@@ -7,4 +7,5 @@
     <string name="menu_search">Search</string>
     <string name="menu_share">Share</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="default_web_client_id">968628862036-l43apbrl12n18ck1mm8cpnvjvg0g95ig.apps.googleusercontent.com</string>
 </resources>
