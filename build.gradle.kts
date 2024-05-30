@@ -6,7 +6,6 @@ buildscript {
     }
     dependencies {
         classpath("com.google.android.libraries.mapsplatform.secrets-gradle-plugin:secrets-gradle-plugin:2.0.1")
-        classpath("com.android.tools.build:gradle:7.0.2")
         classpath("com.google.gms:google-services:4.4.1")
     }
 }
@@ -15,5 +14,4 @@ plugins {
     alias(libs.plugins.androidApplication) apply false
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin) apply false
-//    id("com.google.gms.google-services") version "4.4.1" apply false
 }

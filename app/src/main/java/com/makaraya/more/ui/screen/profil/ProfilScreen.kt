@@ -37,12 +37,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
+import coil.compose.AsyncImage
 import com.makaraya.more.R
+import com.makaraya.more.ui.screen.signin.UserData
 import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat
 
 @Composable
-fun ProfilScreen() {
+fun ProfilScreen(
+    navController: NavController,
+    userData: UserData?,
+    onSignOut: () -> Unit
+) {
     Box (
         modifier = Modifier
             .fillMaxSize()
@@ -67,35 +74,39 @@ fun ProfilScreen() {
                             start.linkTo(parent.start)
                         }
                 )
-                Image(
-                    painter = painterResource(id = R.drawable.pictureprofile),
-                    contentDescription = "PP",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .clip(CircleShape)
-                        .size(height = 150.dp, width = 150.dp)
-                        .clip(RoundedCornerShape(16.dp))
-                        .border(
-                            BorderStroke(borderWidth, Color.White),
-                            CircleShape
-                        )
-                        .constrainAs(profile) {
-                            top.linkTo(topImg.bottom)
-                            bottom.linkTo(topImg.bottom)
-                            start.linkTo(parent.start)
-                            end.linkTo(parent.end)
-                        }
-                )
+                if(userData?.profilePictureUrl != null) {
+                    AsyncImage(
+                        model = userData.profilePictureUrl,
+                        contentDescription = "Profile picture",
+                        contentScale = ContentScale.Crop,
+                        modifier = Modifier
+                            .clip(CircleShape)
+                            .size(height = 150.dp, width = 150.dp)
+                            .clip(RoundedCornerShape(16.dp))
+                            .border(
+                                BorderStroke(borderWidth, Color.White),
+                                CircleShape
+                            )
+                            .constrainAs(profile) {
+                                top.linkTo(topImg.bottom)
+                                bottom.linkTo(topImg.bottom)
+                                start.linkTo(parent.start)
+                                end.linkTo(parent.end)
+                            }
+                    )
+                }
             }
             Spacer(modifier = Modifier.padding(top = 15.dp))
-            Text(
-                text = "Makaraya",
-                style = TextStyle(
-                    color = Color.Black,
-                    fontSize = 25.sp,
-                    fontFamily = Montserrat.SemiBold
-                ),
-            )
+            if(userData?.username != null) {
+                Text(
+                    text = userData.username,
+                    style = TextStyle(
+                        color = Color.Black,
+                        fontSize = 25.sp,
+                        fontFamily = Montserrat.SemiBold
+                    ),
+                )
+            }
             Text(
                 text = "makaraya@gmail.com",
                 style = TextStyle(
@@ -225,7 +236,7 @@ fun ProfilScreen() {
 
             Spacer(modifier = Modifier.padding(top = 15.dp))
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { onSignOut() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(
@@ -263,7 +274,7 @@ fun ProfilScreen() {
                     horizontalAlignment = Alignment.Start
                 ){
                     Text(
-                        text = "Logout",
+                        text = "Keluar",
                         style = TextStyle(
                             fontSize = 20.sp,
                             fontFamily = Montserrat.SemiBold
@@ -277,7 +288,7 @@ fun ProfilScreen() {
                     Icon(
                         imageVector = Icons.Default.ArrowForwardIos,
                         contentDescription = "",
-                        modifier = Modifier.clickable{},
+                        modifier = Modifier.clickable{  },
                     )
                 }
             }
@@ -289,6 +300,6 @@ fun ProfilScreen() {
 @Composable
 private fun ProfilScreenPrev() {
     MORETheme {
-        ProfilScreen()
+//        ProfilScreen()
     }
 }

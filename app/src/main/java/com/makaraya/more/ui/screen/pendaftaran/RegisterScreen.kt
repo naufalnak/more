@@ -257,7 +257,7 @@ fun RegisterScreen(
                 fontFamily = Montserrat.SemiBold,
                 fontSize = 14.sp,
                 color = Color(0xFF1D4371),
-            ), modifier = Modifier.clickable { navController.navigate("login") })
+            ), modifier = Modifier.clickable { navController.navigate("signin") })
         }
     }
 }

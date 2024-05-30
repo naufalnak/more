@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "968628862036",
+    "project_id": "more-d975c",
+    "storage_bucket": "more-d975c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968628862036:android:454ff0a42e9742297841c1",
+        "android_client_info": {
+          "package_name": "com.makaraya.more"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968628862036-u2bpt1g5e9h0kb08hvbm4cihk473e30f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.makaraya.more",
+            "certificate_hash": "00b24078315ac657a86224c60c4301c8cec59e13"
+          }
+        },
+        {
+          "client_id": "968628862036-k6ml3t9bt0a59jdi4stlnpvqgdv2o1nn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-U35NJkWKYmdgvs6G63uTXxkqEn6yDQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968628862036-k6ml3t9bt0a59jdi4stlnpvqgdv2o1nn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

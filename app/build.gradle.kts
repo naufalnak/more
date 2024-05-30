@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.googleAndroidLibrariesMapsplatformSecretsGradlePlugin)
+    id("com.google.gms.google-services")
+//    id 'com.google.gms.google-services'
 }
 
 android {
@@ -77,6 +79,7 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.2.1")
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -87,6 +90,9 @@ dependencies {
 
     //coil
     implementation("io.coil-kt:coil-compose:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.0")
+    implementation("androidx.navigation:navigation-compose:2.5.3")
 
     //icon
     implementation(libs.androidx.material.icons.extended)
@@ -99,8 +105,6 @@ dependencies {
 
     // Android Maps Compose composables for the Maps SDK for Android
     implementation ("com.google.maps.android:maps-compose:4.4.1")
-
-    // Maps SDK for Android
     implementation ("com.google.android.gms:play-services-maps:18.2.0")
 
     // To use constraintlayout in compose
@@ -108,14 +112,11 @@ dependencies {
 
     // KTX for the Maps SDK for Android library
     implementation ("com.google.maps.android:maps-ktx:5.0.0")
-
     implementation("com.google.android.material:material:1.12.0")
-
     implementation("androidx.compose.material:material:1.6.7")
 
     // Import the Firebase BoM
-    implementation("com.google.firebase:firebase-auth:23.0.0")
-
+    implementation("com.google.firebase:firebase-auth")
     implementation("com.google.android.gms:play-services-auth:21.2.0")
 
 
@@ -127,4 +128,9 @@ dependencies {
     // Add the dependencies for any other desired Firebase products
     // https://firebase.google.com/docs/android/setup#available-libraries
 
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+//    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
+
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }

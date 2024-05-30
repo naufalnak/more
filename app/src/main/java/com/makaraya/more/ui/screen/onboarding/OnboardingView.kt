@@ -26,5 +26,8 @@ fun OnboardingView(
             pageCount = pages.size,
             currentPage = currentPage
         )
+    }else {
+        // Menutup tampilan onboarding setelah selesai
+        onComplete()
     }
 }

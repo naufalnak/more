@@ -1,5 +1,6 @@
-package com.makaraya.more.ui.screen.login
+package com.makaraya.more.ui.screen.signin
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -25,7 +26,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
@@ -33,19 +33,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.makaraya.more.MainActivity
 import com.makaraya.more.R
+import com.makaraya.more.navigation.Screen
+import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat
-import com.makaraya.more.ui.viewmodel.LoginViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LoginScreen(
+fun SignInScreen(
     navController: NavController,
-//    viewModel: LoginViewModel,
-    modifier: Modifier = Modifier
+    state: SignInState,
+    onSignInClick: () -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     val context = LocalContext.current
+    LaunchedEffect(key1 = state.signInError) {
+        state.signInError?.let { error ->
+            Toast.makeText(
+                context,
+                error,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(true) }
@@ -216,9 +227,7 @@ fun LoginScreen(
                     contentDescription = "Google",
                     modifier = Modifier
                         .size(60.dp)
-                        .clickable {
-//                            (context as MainActivity).startActivityForResult(viewModel.getGoogleSignIn(), LoginViewModel.RC_SIGN_IN)
-                        }
+                        .clickable { onSignInClick() }
                 )
             }
             Spacer(modifier = Modifier.height(20.dp))
@@ -241,9 +250,16 @@ fun LoginScreen(
                     fontFamily = Montserrat.SemiBold,
                     fontSize = 14.sp,
                     color = Color(0xFF1D4371),
-                ), modifier = Modifier.clickable { navController.navigate("signin") })
+                ), modifier = Modifier.clickable { navController.navigate(Screen.SignUp.route) })
             }
         }
     }
 }
 
+@Preview
+@Composable
+private fun SignInScreenPrev() {
+    MORETheme {
+
+    }
+}
