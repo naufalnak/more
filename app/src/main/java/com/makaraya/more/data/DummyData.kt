@@ -6,6 +6,7 @@ import com.makaraya.more.data.model.Topic
 import com.makaraya.more.data.model.Bengkel
 import com.makaraya.more.data.model.Riwayat
 import com.makaraya.more.data.model.Riwayat1
+import com.makaraya.more.data.model.ServiceOption
 
 object DummyData {
     val onboardingPages = listOf(
@@ -110,5 +111,19 @@ object DummyData {
             transaksi = "Rp 58.300"
         ),
 
+    )
+    val waktu = listOf(
+            "09.00", "09.30", "10.00", "10.30", "11.00", "11.30"
+        )
+    val serviceOptions = listOf(
+        ServiceOption("Ganti Ban Motor", "200.000"),
+        ServiceOption("Ganti Oli Sampingan", "58.300"),
+        ServiceOption("Tune Up Motor Injeksi", "82.500"),
+        ServiceOption("Ganti Busi Motor", "57.500"),
+        ServiceOption("Pembersihan Saringan Udara", "30.000")
+    )
+    val vehicleTypes = listOf(
+        "Sepeda Motor",
+        "Mobil"
     )
 }
