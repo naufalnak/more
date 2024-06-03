@@ -133,4 +133,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.3.1"))
 
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Lottie Animation for Jetpack Compose
+    implementation ("com.airbnb.android:lottie-compose:6.4.1")
 }
