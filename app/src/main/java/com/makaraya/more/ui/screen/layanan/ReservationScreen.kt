@@ -18,12 +18,14 @@ import androidx.compose.ui.text.*
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.makaraya.more.R
 import com.makaraya.more.data.DummyData
 import com.makaraya.more.data.model.ServiceOption
 import com.makaraya.more.navigation.Screen
+import com.makaraya.more.ui.screen.layanan.viewmodel.ReservationViewModel
 import com.makaraya.more.ui.theme.Montserrat
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -32,52 +34,37 @@ import java.util.Locale
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ReservationScreen(
-    navController: NavController
+    navController: NavController,
+    viewModel: ReservationViewModel = viewModel()
 ) {
-    val selectedOptions = remember { mutableStateListOf<Boolean>() }
-    for (i in DummyData.serviceOptions.indices) {
-        selectedOptions.add(false)
-    }
-
-    var selectedVehicle by remember { mutableStateOf("") }
-
-    var selectedText by remember {
-        mutableStateOf("Pilih waktu")
-    }
-
-    var isExpanded by remember {
-        mutableStateOf(false)
-    }
-
-    val date = remember { Calendar.getInstance().timeInMillis }
-    val formatter = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-    var scheduleDate by remember { mutableStateOf("") }
-    val datePickerState = rememberDatePickerState(initialSelectedDateMillis = date)
-    var showDatePicker by remember { mutableStateOf(false) }
+    val selectedOptions by viewModel.selectedOptions.collectAsState()
+    val selectedVehicle by viewModel.selectedVehicle.collectAsState()
+    val selectedText by viewModel.selectedText.collectAsState()
+    val isExpanded by viewModel.isExpanded.collectAsState()
+    val scheduleDate by viewModel.scheduleDate.collectAsState()
+    val showDatePicker by viewModel.showDatePicker.collectAsState()
+    val datePickerState by viewModel.datePickerState.collectAsState()
 
     if (showDatePicker) {
         DatePickerDialog(
-            onDismissRequest = { showDatePicker = false },
+            onDismissRequest = { viewModel.dismissDatePicker() },
             confirmButton = {
                 TextButton(
                     onClick = {
-                        val selectedDate = Calendar.getInstance().apply {
-                            timeInMillis = datePickerState.selectedDateMillis!!
-                        }
-                        scheduleDate = formatter.format(selectedDate.time)
-                        showDatePicker = false
+                        viewModel.onDateSelected(datePickerState)
                     }
                 ) {
                     Text("OK")
                 }
             },
             dismissButton = {
-                TextButton(onClick = { showDatePicker = false }) { Text("Cancel") }
+                TextButton(onClick = { viewModel.dismissDatePicker() }) { Text("Cancel") }
             }
         ) {
-            DatePicker(state = datePickerState)
+            DatePicker(state = rememberDatePickerState(initialSelectedDateMillis = datePickerState))
         }
     }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -137,9 +124,13 @@ fun ReservationScreen(
                                 fontSize = 14.sp,
                                 fontFamily = Montserrat.SemiBold
                             ),
-                            onClick = {navController.navigate("${Screen.PanggilMekanik.route}")},
+                            onClick = { navController.navigate("${Screen.PanggilMekanik.route}") },
                             modifier = Modifier
-                                .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
+                                .border(
+                                    width = 1.dp,
+                                    color = Color.Black,
+                                    shape = RoundedCornerShape(8.dp)
+                                )
                                 .padding(horizontal = 8.dp, vertical = 2.dp)
                         )
                     }
@@ -157,7 +148,7 @@ fun ReservationScreen(
                     placeholder = "Atur Tanggal",
                     icon = Icons.Default.DateRange,
                     onIconClick = {
-                        showDatePicker = true
+                        viewModel.showDatePicker()
                     }
                 )
                 Text(
@@ -170,7 +161,7 @@ fun ReservationScreen(
                 )
                 ExposedDropdownMenuBox(
                     expanded = isExpanded,
-                    onExpandedChange = { isExpanded = !isExpanded },
+                    onExpandedChange = { viewModel.onExpandedChanged() },
                     modifier = Modifier
                         .padding(8.dp)
                 ) {
@@ -190,18 +181,16 @@ fun ReservationScreen(
                         trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded) }
                     )
 
-                    ExposedDropdownMenu(expanded = isExpanded, onDismissRequest = { isExpanded = false }) {
+                    ExposedDropdownMenu(expanded = isExpanded, onDismissRequest = { viewModel.onExpandedChanged() }) {
                         DummyData.waktu.forEachIndexed { index, text ->
                             DropdownMenuItem(
                                 text = { Text(text = text) },
                                 onClick = {
-                                    selectedText = DummyData.waktu[index]
-                                    isExpanded = false
+                                    viewModel.onTextSelected(DummyData.waktu[index])
                                 },
                                 contentPadding = ExposedDropdownMenuDefaults.ItemContentPadding
                             )
                         }
-
                     }
                 }
 
@@ -246,7 +235,7 @@ fun ReservationScreen(
                                 Spacer(modifier = Modifier.weight(1f))
                                 RadioButton(
                                     selected = selectedVehicle == vehicleType,
-                                    onClick = { selectedVehicle = vehicleType },
+                                    onClick = { viewModel.onVehicleSelected(vehicleType) },
                                     colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF1D4371))
                                 )
                             }
@@ -254,7 +243,6 @@ fun ReservationScreen(
                     }
                 }
 
-                // Service options selection
                 Text(
                     text = "Pilihan Layanan",
                     style = TextStyle(
@@ -280,7 +268,7 @@ fun ReservationScreen(
                                 Checkbox(
                                     checked = selectedOptions[index],
                                     onCheckedChange = { isChecked ->
-                                        selectedOptions[index] = isChecked
+                                        viewModel.onOptionSelected(index, isChecked)
                                     }
                                 )
                                 Spacer(modifier = Modifier.width(8.dp))
@@ -311,7 +299,6 @@ fun ReservationScreen(
                     }
                 }
 
-                // Confirmation button
                 Button(
                     onClick = { navController.navigate("${Screen.Riwayat.route}") },
                     modifier = Modifier

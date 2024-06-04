@@ -40,32 +40,32 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.makaraya.more.navigation.Screen
 import com.makaraya.more.ui.screen.layanan.component.BottomSheetCompose
+import com.makaraya.more.ui.screen.layanan.viewmodel.PanggilMekanikViewModel
 import com.makaraya.more.ui.theme.Montserrat
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PanggilMekanikScreen(
     navController: NavController,
-    modifier: Modifier = Modifier.background(if (isSystemInDarkTheme())Color.DarkGray else Color.White)
+    viewModel: PanggilMekanikViewModel = viewModel(),
+    modifier: Modifier = Modifier.background(if (isSystemInDarkTheme()) Color.DarkGray else Color.White)
 ) {
-    val showBottomSheet = remember { mutableStateOf(false) }
-
-    var detailLokasi by remember { mutableStateOf("") }
-    var patokan by remember { mutableStateOf("") }
-    var selectedKendaraan by remember { mutableStateOf("") }
-    var kendalaKendaraan by remember { mutableStateOf("") }
+    val showBottomSheet by viewModel.showBottomSheet.collectAsState()
+    val mekanikRequest by viewModel.mekanikRequest.collectAsState()
 
     Box(
         modifier = Modifier
             .fillMaxSize()
             .background(if (isSystemInDarkTheme()) Color.DarkGray else Color.White)
     ) {
-        Column (
+        Column(
             modifier = Modifier.padding(16.dp)
-        ){
+        ) {
             Icon(
                 imageVector = Icons.Default.ArrowBack,
                 contentDescription = null,
@@ -120,9 +120,13 @@ fun PanggilMekanikScreen(
                             fontSize = 14.sp,
                             fontFamily = Montserrat.SemiBold
                         ),
-                        onClick = {navController.navigate("${Screen.Reservation.route}")},
+                        onClick = { navController.navigate("${Screen.Reservation.route}") },
                         modifier = Modifier
-                            .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
+                            .border(
+                                width = 1.dp,
+                                color = Color.Black,
+                                shape = RoundedCornerShape(8.dp)
+                            )
                             .padding(horizontal = 8.dp, vertical = 2.dp)
                     )
                 }
@@ -140,7 +144,7 @@ fun PanggilMekanikScreen(
                 modifier = Modifier
                     .padding(start = 8.dp, top = 8.dp)
                     .clickable {
-                        showBottomSheet.value = true
+                        viewModel.showBottomSheet()
                     }
                     .border(width = 1.dp, color = Color.Black, shape = RoundedCornerShape(8.dp))
                     .padding(4.dp)
@@ -159,21 +163,21 @@ fun PanggilMekanikScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    text = if (detailLokasi.isEmpty()) "" else "$detailLokasi",
+                    text = if (mekanikRequest.detailLokasi.isEmpty()) "" else mekanikRequest.detailLokasi,
                     modifier = Modifier.padding(start = 8.dp, top = 8.dp)
                 )
                 Text(
-                    text = if (patokan.isEmpty()) "" else "($patokan)",
+                    text = if (mekanikRequest.patokan.isEmpty()) "" else "(${mekanikRequest.patokan})",
                     modifier = Modifier.padding(start = 2.dp, top = 8.dp)
                 )
             }
             Spacer(modifier = Modifier.height(10.dp))
-            if (showBottomSheet.value) {
+            if (showBottomSheet) {
                 BottomSheetCompose(
-                    showBottomSheet = showBottomSheet,
-                    onDetailsSaved = { savedDetailLokasi, savedPatokan ->
-                        detailLokasi = savedDetailLokasi
-                        patokan = savedPatokan
+                    showBottomSheet = remember { mutableStateOf(showBottomSheet) },
+                    onDetailsSaved = { detailLokasi, patokan ->
+                        viewModel.updateDetailLokasi(detailLokasi, patokan)
+                        viewModel.hideBottomSheet()
                     }
                 )
             }
@@ -196,7 +200,8 @@ fun PanggilMekanikScreen(
                     .padding(bottom = 40.dp),
                 shape = RoundedCornerShape(16.dp),
                 colors = CardDefaults.cardColors(
-                    containerColor = Color.White),
+                    containerColor = Color.White
+                ),
                 elevation = CardDefaults.cardElevation(
                     defaultElevation = 5.dp
                 )
@@ -216,8 +221,8 @@ fun PanggilMekanikScreen(
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         RadioButton(
-                            selected = selectedKendaraan == "Sepeda Motor",
-                            onClick = { selectedKendaraan = "Sepeda Motor"},
+                            selected = mekanikRequest.selectedKendaraan == "Sepeda Motor",
+                            onClick = { viewModel.updateSelectedKendaraan("Sepeda Motor") },
                             colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF1D4371))
                         )
                     }
@@ -236,8 +241,8 @@ fun PanggilMekanikScreen(
                         )
                         Spacer(modifier = Modifier.weight(1f))
                         RadioButton(
-                            selected = selectedKendaraan == "Mobil",
-                            onClick = {selectedKendaraan = "Mobil"},
+                            selected = mekanikRequest.selectedKendaraan == "Mobil",
+                            onClick = { viewModel.updateSelectedKendaraan("Mobil") },
                             colors = RadioButtonDefaults.colors(selectedColor = Color(0xFF1D4371))
                         )
                     }
@@ -255,8 +260,8 @@ fun PanggilMekanikScreen(
             )
 
             OutlinedTextField(
-                value =  kendalaKendaraan,
-                onValueChange = { kendalaKendaraan = it },
+                value = mekanikRequest.kendalaKendaraan,
+                onValueChange = { viewModel.updateKendalaKendaraan(it) },
                 placeholder = {
                     Text(
                         text = "Masukkan Kendala Kendaraan",
@@ -307,5 +312,7 @@ fun PanggilMekanikScreen(
 @Preview(showBackground = true)
 @Composable
 fun PreviewPanggilMekanikScreen() {
-//    PanggilMekanikScreen()
+    val navController = rememberNavController()
+    val viewModel: PanggilMekanikViewModel = viewModel()
+    PanggilMekanikScreen(navController = navController, viewModel = viewModel)
 }
