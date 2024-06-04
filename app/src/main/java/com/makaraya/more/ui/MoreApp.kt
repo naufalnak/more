@@ -84,7 +84,6 @@ fun MoreApp() {
     val currentRoute = navBackStack?.destination?.route
     val isOnboardingComplete = PreferenceHelper.isOnboardingComplete(context)
 
-    // Inisialisasi GoogleAuthUiClient di sini
     val googleAuthUiClient by remember {
         mutableStateOf(
             GoogleAuthUiClient(
@@ -105,7 +104,6 @@ fun MoreApp() {
                     modifier = Modifier
                         .shadow(8.dp)
                 ){
-                    // Home
                     IconButton(
                         onClick = {
                             selected.value = Icons.Default.Home
@@ -135,7 +133,6 @@ fun MoreApp() {
                         }
                     }
 
-                    // Map
                     IconButton(
                         onClick = {
                             selected.value = Icons.Default.LocationOn
@@ -165,7 +162,6 @@ fun MoreApp() {
                         }
                     }
 
-                    // History
                     IconButton(
                         onClick = {
                             selected.value = Icons.Default.ListAlt
@@ -195,7 +191,6 @@ fun MoreApp() {
                         }
                     }
 
-                    // Profil
                     IconButton(
                         onClick = {
                             selected.value = Icons.Default.Person
@@ -230,10 +225,10 @@ fun MoreApp() {
     ){contentPadding ->
         NavHost(
             navController = navController,
-            startDestination = "splash_screen",
+            startDestination = "home",
             modifier = Modifier.padding(contentPadding)
         ){
-            composable("splash_screen") {
+            composable("home") {
                 SplashScreen(navController = navController)
             }
             composable("onboarding_screen") {

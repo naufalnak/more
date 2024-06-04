@@ -183,7 +183,7 @@ fun RegisterScreen(
             colors = ButtonDefaults.buttonColors(Color(android.graphics.Color.parseColor("#1D4371")))
         ) {
             Text(
-                text = "Login", style = TextStyle(
+                text = "Register", style = TextStyle(
                     fontFamily = Montserrat.Medium, fontSize = 16.sp, color = Color.White
                 )
             )
