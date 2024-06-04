@@ -17,6 +17,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.makaraya.more.ui.screen.riwayat.component.PanggilMekanikContent
 import com.makaraya.more.ui.screen.riwayat.component.ReservasiContent
 import com.makaraya.more.ui.screen.riwayat.component.TabItem
@@ -24,7 +25,9 @@ import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat
 
 @Composable
-fun RiwayatScreen() {
+fun RiwayatScreen(
+    navController: NavController
+) {
     var selectedTabIndex by remember { mutableStateOf(0) }
 
     Column(
@@ -69,7 +72,7 @@ fun RiwayatScreen() {
         }
         // Content based on the selected tab
         when (selectedTabIndex) {
-            0 -> ReservasiContent()
+            0 -> ReservasiContent(navController = navController)
             1 -> PanggilMekanikContent()
         }
     }
@@ -79,6 +82,6 @@ fun RiwayatScreen() {
 @Composable
 private fun RiwayatScreenPrev() {
     MORETheme {
-        RiwayatScreen()
+//        RiwayatScreen()
     }
 }

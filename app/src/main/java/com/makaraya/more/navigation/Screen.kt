@@ -17,4 +17,6 @@ sealed class Screen (val route: String){
     data object PanggilMekanik: Screen("panggil_mekanik")
     data object Reservation: Screen("reservation")
     data object Pembayaran: Screen("pembayaran")
+    data object DetailReservasi: Screen("detail_reservasi")
+    data object SuccessPayment: Screen("success_payment")
 }

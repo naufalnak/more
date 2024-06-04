@@ -20,6 +20,10 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -29,15 +33,20 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.makaraya.more.data.model.Riwayat
+import com.makaraya.more.navigation.Screen
 import com.makaraya.more.ui.theme.MORETheme
 import com.makaraya.more.ui.theme.Montserrat
 
 @Composable
 fun ReservasiItem(
+    navController: NavController,
     riwayat: Riwayat,
     modifier: Modifier = Modifier,
 ) {
+    var buttonText by remember { mutableStateOf("Bayar") }
+
     Box (
         modifier = modifier
     ){
@@ -148,14 +157,24 @@ fun ReservasiItem(
                     }
                     Spacer(modifier = modifier.padding(bottom = 5.dp))
                     TextButton(
-                        modifier = modifier
+                        modifier = Modifier
                             .width(99.dp)
                             .height(30.dp),
                         colors = ButtonDefaults.textButtonColors(Color(0xFF1D4371)),
-                        onClick = { /*TODO*/ }
+                        onClick = {
+                            when (buttonText) {
+                                "Bayar" -> {
+                                    navController.navigate(Screen.Reservation.route)
+                                    buttonText = "Lihat Detail"
+                                }
+                                "Lihat Detail" -> {
+                                    navController.navigate(Screen.DetailReservasi.route)
+                                }
+                            }
+                        }
                     ) {
                         Text(
-                            text = "Lihat Detail",
+                            text = buttonText,
                             style = TextStyle(
                                 color = Color.White,
                                 fontSize = 11.sp,
@@ -164,7 +183,6 @@ fun ReservasiItem(
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis,
                         )
-
                     }
                 }
             }
@@ -176,15 +194,15 @@ fun ReservasiItem(
 @Composable
 private fun ReservasiItemPrev() {
     MORETheme {
-        ReservasiItem(
-            riwayat = Riwayat(
-                1,
-                "Bengkel Anugrah",
-                "Sepeda Motor",
-                "04 Mei 2024",
-                "Mobil mengeluarkan asap putih dari kap mesin",
-                "Rp 58.300"
-            )
-        )
+//        ReservasiItem(
+//            riwayat = Riwayat(
+//                1,
+//                "Bengkel Anugrah",
+//                "Sepeda Motor",
+//                "04 Mei 2024",
+//                "Mobil mengeluarkan asap putih dari kap mesin",
+//                "Rp 58.300"
+//            )
+//        )
     }
 }

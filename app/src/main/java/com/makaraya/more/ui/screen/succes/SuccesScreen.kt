@@ -53,7 +53,8 @@ fun SuccesScreen(
         )
         LottieAnimation(
             composition = composition,
-            iterations = LottieConstants.IterateForever)
+            iterations = LottieConstants.IterateForever
+        )
 
 
         Text(

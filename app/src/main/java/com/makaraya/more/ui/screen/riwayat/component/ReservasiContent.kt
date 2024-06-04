@@ -12,11 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.makaraya.more.data.model.Riwayat
 import com.makaraya.more.ui.theme.MORETheme
 
 @Composable
-fun ReservasiContent() {
+fun ReservasiContent(
+    navController: NavController
+) {
     val riwayat = Riwayat(
         1,
         "Bengkel Anugrah",
@@ -34,7 +37,10 @@ fun ReservasiContent() {
         Column (
             Modifier.padding(8.dp)
         ){
-            ReservasiItem(riwayat = riwayat)
+            ReservasiItem(
+                navController = navController,
+                riwayat = riwayat
+            )
         }
     }
 }
@@ -43,6 +49,6 @@ fun ReservasiContent() {
 @Composable
 private fun ReservasiContentPrev() {
     MORETheme {
-        ReservasiContent()
+//        ReservasiContent()
     }
 }

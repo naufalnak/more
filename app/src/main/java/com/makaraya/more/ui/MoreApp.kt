@@ -48,6 +48,8 @@ import com.makaraya.more.data.DummyData
 import com.makaraya.more.ui.screen.detail.DetailBengkel
 import com.makaraya.more.ui.screen.detail.DetailTopic
 import com.makaraya.more.navigation.Screen
+import com.makaraya.more.screen.detailriwayat.DetailScreenRiwayat
+import com.makaraya.more.screen.succes.SuccesScreen
 import com.makaraya.more.ui.screen.homescreen.HomeScreen
 import com.makaraya.more.ui.screen.layanan.PanggilMekanikScreen
 import com.makaraya.more.ui.screen.layanan.ReservationScreen
@@ -324,7 +326,7 @@ fun MoreApp() {
             }
 
             composable(Screen.Riwayat.route){
-                RiwayatScreen()
+                RiwayatScreen(navController)
             }
 
             composable(Screen.Profil.route){
@@ -351,16 +353,6 @@ fun MoreApp() {
             }
 
             composable(
-                Screen.DetailBengkel.route + "/{bengkelId}",
-                arguments = listOf(navArgument("bengkelId") { type = NavType.IntType })
-            ) { navBackStackEntry ->
-                DetailBengkel(
-                    navController = navController,
-                    bengkelId = navBackStackEntry.arguments?.getInt("bengkelId")
-                )
-            }
-
-            composable(
                 Screen.PanggilMekanik.route
             ){
                 PanggilMekanikScreen(navController)
@@ -379,6 +371,22 @@ fun MoreApp() {
             }
 
             composable(
+                Screen.SuccessPayment.route
+            ){
+                SuccesScreen(navController)
+            }
+
+            composable(
+                Screen.DetailBengkel.route + "/{bengkelId}",
+                arguments = listOf(navArgument("bengkelId") { type = NavType.IntType })
+            ) { navBackStackEntry ->
+                DetailBengkel(
+                    navController = navController,
+                    bengkelId = navBackStackEntry.arguments?.getInt("bengkelId")
+                )
+            }
+
+            composable(
                 Screen.DetailTopic.route + "/{topicId}",
                 arguments = listOf(navArgument("topicId"){
                     type = NavType.IntType
@@ -388,6 +396,12 @@ fun MoreApp() {
                     navController = navController,
                     topicId = navBackStackEntry.arguments?.getInt("topicId")
                 )
+            }
+
+            composable(
+                Screen.DetailReservasi.route
+            ){
+                DetailScreenRiwayat(navController = navController)
             }
         }
     }
