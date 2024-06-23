@@ -1,5 +1,6 @@
 package com.makaraya.more.ui.screen.pendaftaran
 
+import android.content.Context
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,6 +23,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -31,22 +33,32 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.makaraya.more.R
+import com.makaraya.more.data.model.User
+import com.makaraya.more.data.response.Status
 import com.makaraya.more.ui.theme.Montserrat
+import com.makaraya.more.utils.SweetAlerts
+import com.makaraya.more.utils.SweetAlerts.success
 
 @OptIn(ExperimentalMaterial3Api::class)
 //@Preview
 @Composable
 fun RegisterScreen(
     navController: NavController,
-    modifier: Modifier = Modifier,
+    registerViewModel: RegisterViewModel = hiltViewModel()
 ) {
     var nama by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var nomortelepon by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmPassword by remember { mutableStateOf("") }
     var passwordVisibility by remember { mutableStateOf(true) }
+    var confirmPasswordVisibility by remember { mutableStateOf(true) }
+    val isError = remember { mutableStateOf(false) }
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -88,6 +100,7 @@ fun RegisterScreen(
                 onValueChange = { nama = it },
                 label = { Text(text = "") },
                 shape = RoundedCornerShape(16.dp),
+                isError = isError.value,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color(0xFF8AB7E1), // Warna biru dengan nilai hex
                     unfocusedBorderColor = Color(0xFF8AB7E1), // Warna abu-abu dengan nilai hex
@@ -108,6 +121,7 @@ fun RegisterScreen(
                 onValueChange = { email = it },
                 label = { Text(text = "") },
                 shape = RoundedCornerShape(16.dp),
+                isError = isError.value,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color(0xFF8AB7E1), // Warna biru dengan nilai hex
                     unfocusedBorderColor = Color(0xFF8AB7E1), // Warna abu-abu dengan nilai hex
@@ -128,6 +142,7 @@ fun RegisterScreen(
                 onValueChange = { nomortelepon = it },
                 label = { Text(text = "") },
                 shape = RoundedCornerShape(16.dp),
+                isError = isError.value,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color(0xFF8AB7E1), // Warna biru dengan nilai hex
                     unfocusedBorderColor = Color(0xFF8AB7E1), // Warna abu-abu dengan nilai hex
@@ -148,6 +163,7 @@ fun RegisterScreen(
                 onValueChange = { password = it },
                 label = { Text(text = "") },
                 shape = RoundedCornerShape(16.dp),
+                isError = isError.value,
                 colors = TextFieldDefaults.outlinedTextFieldColors(
                     focusedBorderColor = Color(0xFF8AB7E1), // Warna biru dengan nilai hex
                     unfocusedBorderColor = Color(0xFF8AB7E1), // Warna abu-abu dengan nilai hex
@@ -170,12 +186,73 @@ fun RegisterScreen(
                     .fillMaxWidth()
                     .padding(bottom = 16.dp)
             )
+
+            Text(
+                text = "Konfirmasi Kata Sandi", style = TextStyle(
+                    fontSize = 16.sp,
+                    fontFamily = Montserrat.SemiBold,
+                )
+            )
+
+            OutlinedTextField(value = confirmPassword,
+                onValueChange = { confirmPassword = it },
+                label = { Text(text = "") },
+                shape = RoundedCornerShape(16.dp),
+                isError = isError.value,
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    focusedBorderColor = Color(0xFF8AB7E1), // Warna biru dengan nilai hex
+                    unfocusedBorderColor = Color(0xFF8AB7E1), // Warna abu-abu dengan nilai hex
+                    cursorColor = Color.Black
+                ),
+                visualTransformation = if (confirmPasswordVisibility) {
+                    PasswordVisualTransformation()
+                } else {
+                    VisualTransformation.None
+                },
+                trailingIcon = {
+                    IconButton(onClick = { confirmPasswordVisibility = !confirmPasswordVisibility }) {
+                        Icon(
+                            imageVector = if (confirmPasswordVisibility) Icons.Filled.VisibilityOff else Icons.Filled.Visibility,
+                            contentDescription = "Toggle password visibility"
+                        )
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 16.dp)
+            )
+
         }
 
         Spacer(modifier = Modifier.height(8.dp))
 
         Button(
-            onClick = { /* Login button clicked */ },
+            onClick = {
+                val user = User(
+                    email = email,
+                    password = password,
+                    nama_user = nama,
+                    no_tlp = nomortelepon,
+                    confPassword = confirmPassword)
+                registerViewModel.saveUserData(user)
+                registerViewModel.savedUserStatus.observeForever { result ->
+                    when (result.status) {
+                        Status.SUCCESS -> {
+                            success(context, "Success", "Registrasi Berhasil") {
+                                navController.navigate("home")
+                            }
+                        }
+                        Status.LOADING -> {
+                            loading(context, "Loading")
+                        }
+                        Status.ERROR -> {
+                            error(context, "Oops", result.message ?: "Error occurred")
+                        }
+                        else -> {}
+                    }
+                }
+
+            },
             modifier = Modifier
                 .width(316.dp)
                 .height(45.dp)
@@ -261,3 +338,44 @@ fun RegisterScreen(
         }
     }
 }
+
+
+private fun inputValidation(email: String, password: String, navController: NavController, registerViewModel: RegisterViewModel, context: Context) {
+    val user = User(email, password)
+    registerViewModel.saveUserData(user)
+    registerViewModel.savedUserStatus.observeForever { result ->
+        when (result.status) {
+            Status.SUCCESS -> {
+                com.makaraya.more.ui.screen.pendaftaran.success(context, "Success", "Member ${result.data} Saved Successfully") {
+                    navController.navigate("login_page")
+                }
+            }
+            Status.LOADING -> {
+                loading(context, "Loading")
+            }
+            Status.ERROR -> {
+                error(context, "Oops", result.message ?: "Error occurred")
+            }
+            else -> {}
+        }
+    }
+}
+
+private fun success(context: Context, title: String, msg: String, dismiss: () -> Unit = {}) {
+    SweetAlerts.success(context = context, title = title, msg = msg, dismiss = dismiss)
+}
+
+private fun error(context: Context, title: String, msg: String, dismiss: () -> Unit = {}) {
+    SweetAlerts.error(context = context, title = title, msg = msg, dismiss = dismiss)
+}
+
+private fun loading(context: Context, msg: String) {
+    SweetAlerts.loading(context = context, msg = msg)
+}
+
+@Preview
+@Composable
+fun PreviewRegisterScreen() {
+    RegisterScreen(navController = rememberNavController())
+}
+
